@@ -161,9 +161,6 @@ let toggleRev = false;
 
 let audioPlayer;
 
-let bufferOr;
-let audioData;
-
 
 fileInput.addEventListener('change', async (e, impulse) => {
     // If there's a song selected we pause it and undefine
@@ -193,8 +190,8 @@ fileInput.addEventListener('change', async (e, impulse) => {
 
     try {
         const response = await fetch(URL.createObjectURL(file));
-        bufferOr = await response.arrayBuffer();
-        audioData = await audioPlayer.decodeAudioData(bufferOr);
+        const buffer = await response.arrayBuffer();
+        const audioData = await audioPlayer.decodeAudioData(buffer);
         audioPlayer.setBuffer(audioData);
 
         audioPlayer.play();
@@ -230,10 +227,6 @@ reverbBTN.addEventListener('click', ()=>{
     let impulse = impulseResponse(revDurSlider.value, revDecSlider.value);
     audioPlayer.setImpulseResponse(impulse);
     reverbSlider.max = 6;
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
     
 });
 
@@ -242,10 +235,6 @@ revDurSlider.addEventListener('pointerup', ()=>{
     reverbSlider.max = 6;
     let impulse = impulseResponse(revDurSlider.value, revDecSlider.value);
     audioPlayer.setImpulseResponse(impulse);
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 });
 
 revDecSlider.addEventListener('pointerup', ()=>{
@@ -253,10 +242,6 @@ revDecSlider.addEventListener('pointerup', ()=>{
     reverbSlider.max = 6;
     let impulse = impulseResponse(revDurSlider.value, revDecSlider.value);
     audioPlayer.setImpulseResponse(impulse);
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 });
 
 
@@ -325,10 +310,6 @@ playButton.addEventListener('click', () => {
             updateSeek(audioPlayer, seekSlider);
         }, 1000);
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 });
 
 pauseButton.addEventListener('click', () => {
@@ -351,40 +332,24 @@ toggleRevButton.addEventListener('click', () =>{
         audioPlayer.toggle(true);
         toggleRev = false;
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 })
 
 tempoSlider.addEventListener('input', () => {
     if (audioPlayer) {
         audioPlayer.tempo = tempoSlider.value;
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 });
 
 pitchSlider.addEventListener('input', () => {
     if (audioPlayer) {
         audioPlayer.pitch = pitchSlider.value;
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 });
 
 reverbSlider.addEventListener('input', () =>{
     if(audioPlayer){
         audioPlayer.dwGainNode = reverbSlider.value;
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 })
 
 bufferChannels.forEach(radInp =>{
@@ -399,8 +364,4 @@ seekSlider.addEventListener('input', ()=>{
     if(audioPlayer){
         audioPlayer.seekPercent(percentage);
     }
-
-    bufferOr = response.arrayBuffer();
-    audioData = audioPlayer.decodeAudioData(bufferOr);
-    audioPlayer.setBuffer(audioData);
 })
