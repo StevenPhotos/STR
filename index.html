@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./node_modules/soundtouchjs/dist/soundtouch.js" defer></script>
+  <script src="script2.js" defer></script>
+</head>
+<body>
+  <label for="fileInput">Select an audio File:</label>
+  <input type="file" id="fileInput">
+
+  <input type="file" id="reverbFileInput" accept=".wav">
+  <button id="reverbBTN">Reverb</button>
+  
+  <button id="playButton">Play</button>
+  <button id="pauseButton">Pause</button>
+  <button id="toggleRevButton">Toggle</button>
+  
+  <label for="tempoSlider">Tempo:</label>
+  <input type="range" id="tempoSlider" min="0.5" max="2" step="0.05" value="1">
+  
+  <label for="pitchSlider">Pitch:</label>
+  <input type="range" id="pitchSlider" min="0.5" max="2" step="0.05" value="1">
+
+  <label for="reverbSlider">Reverb Vol:</label>
+  <input type="range" id="reverbSlider" min="0" max="6" step="0.1" value="0.5">
+
+  <label for="revDurSlider">Impulse Duration:</label>
+  <input type="range" id="revDurSlider" min="0.2" max="0.7" step="0.025" value="0.45">
+  
+  <label for="revDecSlider">Decay:</label>
+  <input type="range" id="revDecSlider" min="0" max="5" step="0.2" value="2.5">
+  
+  <label for="bufferChan1">1 Chan</label>
+  <input type="radio" name="bufferChan" id="bufferChan1" class="bufferChan" value="1">
+  <label for="bufferChan2">2 Chan</label>
+  <input type="radio" name="bufferChan" id="bufferChan2" class="bufferChan" value="2">
+  <label for="bufferChan4">4 Chan</label>
+  <input type="radio" name="bufferChan" id="bufferChan4" class="bufferChan" value="4" checked="checked">
+  <br>
+  <label for="seekSlider">Seek:</label>
+  <input type="range" id="seekSlider" min="0" max="1" value="0" step="0.01">
+</body>
+</html>
